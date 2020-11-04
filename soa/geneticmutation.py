@@ -29,8 +29,7 @@ class MutationOperator:
 
         n_genes = len(chromosome)
         random_vector = np.random.rand(n_genes)
-        chromosome[random_vector < mutation_probability] = 1 -
-                chromosome[random_vector < mutation_probability]
+        chromosome[random_vector < mutation_probability] = 1 - chromosome[random_vector < mutation_probability]
 
         return chromosome
 
@@ -54,28 +53,26 @@ class MutationOperator:
 
         return population
 
+def GeneticMutation(chromosome, mutation_probability=0.75, type='flip'):
+    """
+    Genetic mutation is performed on each gene, each gene has a probability =< 1 of
+    mutating. In the case of flip mutation, a binary gene is changes value.
+    In the case of swap mutation, two genes will simply swap places.
 
+    If you're using a GA for LGP, always use LGPMutation.
 
-def GeneticMutation(chromosome, mutation_probability=0.8, type='flip'):
-"""
-Genetic mutation is performed on each gene, each gene has a probability =< 1 of
-mutating. In the case of flip mutation, a binary gene is changes value.
-In the case of swap mutation, two genes will simply swap places.
+    Swap mutation works for binary genes and real valued encoding.
+    Swap mutation is especially recommended when solving TSP as crossover
+    can cause congruency problems
 
-If you're using a GA for LGP, always use LGPMutation.
+        # Arguments:
+            chromosome: is a list of elements, binary or real valued
+            mutation_probability : the probability that a single gene (an element of the list
+            chromosome)
 
-Swap mutation works for binary genes and real valued encoding.
-Swap mutation is especially recommended when solving TSP as crossover
-can cause congruency problems
-
-    # Arguments:
-        chromosome: is a list of elements, binary or real valued
-        mutation_probability : the probability that a single gene (an element of the list
-        chromosome)
-
-    # returns:
-        chromosome
-"""
+        # returns:
+            chromosome
+    """
     operator = MutationOperator()
 
     if type.lower() == 'flip':
@@ -86,11 +83,11 @@ can cause congruency problems
 
     return chromosome
 
-def GeneticLPMutation(population, variables, constants):
+def GeneticLPMutation(population, n_variables, n_constants, mutation_probability):
 
     operator = MutationOperator()
 
-    mutated_population = operator.LGPMutation(np.copy(population), variables,
-                    constants, mutation_probability)
+    mutated_population = operator.LGPMutation(np.copy(population), n_variables,
+                    n_constants, mutation_probability)
 
     return mutated_population

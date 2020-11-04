@@ -35,27 +35,27 @@ class SelectionOperator:
 
 
 def Selection(population_fitness, selection_probability=0.8, tournament_size=2, type='tournament'):
-"""
-The selection-operator class has two methods:
-RouletteWheel and Tournament, which can carry out selection.
-Simply pass the fitness of all individuals in your population to the selection method
-and it will, by default carry out tournament selection with a tournament size 2
-and tournament selection parameter 0.8.
+    """
+    The selection-operator class has two methods:
+    RouletteWheel and Tournament, which can carry out selection.
+    Simply pass the fitness of all individuals in your population to the selection method
+    and it will, by default carry out tournament selection with a tournament size 2
+    and tournament selection parameter 0.8.
 
-The method (Selection) SHOULD NOT be given the entire population but simply the array
-containing the fitness of each individual. Correspondingly, the method will
-return the INDEX of the winning individual, not the individual itself.
+    The method (Selection) SHOULD NOT be given the entire population but simply the array
+    containing the fitness of each individual. Correspondingly, the method will
+    return the INDEX of the winning individual, not the individual itself.
 
-    # Arguments:
-        population_fitness: a list containing the fitness of every individual in the
-        current population
-        selection_probability: a float/ratio < 1 which is used for the TOURNAMENT selection
-        tournament_size: integer, the size (number of individuals) to take part in tournament
-        type: TOURNAMENT or ROULETTEWHEEL.
+        # Arguments:
+            population_fitness: a list containing the fitness of every individual in the
+            current population
+            selection_probability: a float/ratio < 1 which is used for the TOURNAMENT selection
+            tournament_size: integer, the size (number of individuals) to take part in tournament
+            type: TOURNAMENT or ROULETTEWHEEL.
 
-    # return:
-        winning_index: the INDEX of the winning (i.e. selected) individual
-"""
+        # return:
+            winning_index: the INDEX of the winning (i.e. selected) individual
+    """
     operator = SelectionOperator()
 
     if type.lower() == 'tournament':
