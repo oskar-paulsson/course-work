@@ -12,7 +12,8 @@ class DecodingOperator:
         k = np.linspace(1,var_length,var_length).astype('int')
 
         for i in range(n_variables):
-            interval = np.linspace(i*var_length + 1, i*var_length + var_length, var_length).astype('int')
+            interval = np.linspace(i*var_length + 1, i*var_length + var_length, 
+                                   var_length).astype('int')
 
             term = np.sum(chromosome[interval-1]*(1/2**(k)))
             term2 = -variable_range + 2*variable_range*term/(1-(1/2**(var_length)))
@@ -28,14 +29,16 @@ class DecodingOperator:
         k = np.linspace(1, var_length, var_length).astype('int')
 
         for i in range(n_variables):
-            interval = np.linspace(i*var_length + 1, i*var_length + var_length, var_length).astype('int')
+            interval = np.linspace(i*var_length + 1, i*var_length + var_length, 
+                                   var_length).astype('int')
 
             term = np.sum(chromosome[interval-1]*(1/2**(k)))
             x[i] = np.copy(coefficient*term)
 
         return x
 
-def DecodeChromosome(chromosome, scheme='fractional', variable_range=0, n_variables=1, coefficient=1):
+def DecodeChromosome(chromosome, scheme='fractional', variable_range=0, 
+                     n_variables=1, coefficient=1):
     """
     The DecodeChromosome method is used to decode a given individual, using a chosen
     decoding-scheme into a real-valued variable. The default scheme is FRACTIONAL
