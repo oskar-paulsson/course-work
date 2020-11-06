@@ -4,7 +4,8 @@ class SelectionOperator:
     def __init__(self):
         pass
 
-    def Tournament(self, population_fitness, tournament_size, selection_probability):
+    def Tournament(self, population_fitness, tournament_size, 
+                   selection_probability):
         population_size = len(population_fitness)
 
         i_temp = np.random.randint(0,population_size,tournament_size)
@@ -14,27 +15,31 @@ class SelectionOperator:
 
         while not tournament_over:
             r = np.random.rand()
+            max_fitness_index = np.where(tournament_selection == 
+                                         max(tournament_selection))[0][0]
+            
             if r < selection_probability:
-                max_fitness_index = np.where(tournament_selection == max(tournament_selection))
                 i_selected = i_temp[max_fitness_index]
                 tournament_over = True
-            else:
-                i_remove = np.where(tournament_selection == max(tournament_selection))
-                tourment_selection[i_remove] = []
-
+            elif len(tournament_selection)==1:
+                i_selected = tournament_selection[0]
+            elif r >= selection_probability:
+                i_remove = max_fitness_index
+                np.delete(tournament_selection,i_remove)
+            
         return i_selected
 
     def RouletteWheel(self, population_fitness):
 
         phi = np.cumsum(population_fitness) / np.sum(population_fitness)
         r = np.random.rand()
-        slice = np.copy(phi[phi > r])
-        i_selected = np.where(phi==slice[0])
+        wheel = np.copy(phi[phi > r])
+        i_selected = np.where(phi==wheel[0])
 
         return i_selected
 
-
-def Selection(population_fitness, selection_probability=0.8, tournament_size=2, type='tournament'):
+def Selection(population_fitness, selection_probability=0.8, tournament_size=2, 
+              type='tournament'):
     """
     The selection-operator class has two methods:
     RouletteWheel and Tournament, which can carry out selection.
