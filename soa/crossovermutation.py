@@ -9,7 +9,7 @@ class CrossoverOperator:
         gene_length = gene_length
         n1 = L1 / gene_length
 
-        crossover_point = np.random.randint(n1-1)+1
+        crossover_point = np.random.randint(n1)
         j = np.copy(crossover_point)
 
         crossed1 = np.append(chromosome1[:j], chromosome2[-(len(chromosome2)-j):])
@@ -30,10 +30,6 @@ class CrossoverOperator:
         cut_end1 = np.random.randint(cut_start1, n1+1)+1
         cut_start2 = np.random.randint(n2)
         cut_end2 = np.random.randint(cut_start2, n2+1)+1
-        print(cut_start1)
-        print(cut_end1)
-        print(cut_start2)
-        print(cut_end2)
 
         piece1 = chromosome1[cut_start1*gene_length:cut_end1*gene_length]
         piece2 = chromosome2[cut_start2*gene_length:cut_end2*gene_length]
@@ -66,7 +62,7 @@ def CrossoverMutation(chromosome1, chromosome2, gene_length, two_point=False):
         # returns:
             crossed1, crossed2: "offspring" of the "parent"-chromosomes 1 and 2.
     """
-# TODO : Make a four-point crossover?
+    # TODO : Make a four-point crossover?
 
     operator = CrossoverOperator()
 
