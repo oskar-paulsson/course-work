@@ -86,7 +86,10 @@ def InitializeLGPPopulation(n_individuals, n_variables, n_constants, n_operators
     """
     operator = InitializationOperator()
 
-    population = operator.LinearProgramming(n_individuals, n_variables, n_constants,
-                                            n_operators, n_genes)
+    population = operator.LinearProgramming(n_individuals, 
+                                            n_variables, 
+                                            n_constants,
+                                            n_operators, 
+                                            n_genes)
 
     return population
